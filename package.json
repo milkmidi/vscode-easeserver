@@ -1,0 +1,54 @@
+{
+    "name": "easeserver",
+    "displayName": "EaseServer",
+    "description": "EaseServer",
+    "version": "0.0.1",
+    "publisher": "milkmidi",
+    "engines": {
+        "vscode": "^1.0.0"
+    },
+    "license": "MIT",
+    "galleryBanner.color": "#ff0000",
+    "keywords": [
+        "hosting",
+        "web",
+        "web server",
+        "local server"
+    ],
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:extension.easeServer"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "EaseServer configuration",
+            "properties": {
+                "easeServer.portNumber": {
+                    "type": "number",
+                    "default": 9527,
+                    "description": "Specifies the port number the Express server should listen to"
+                }
+            }
+        },
+        "commands": [
+            {
+                "command": "extension.easeServer",
+                "title": "EaseServer"
+            }
+        ]
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "vscode": "^0.11.0"
+    },
+    "dependencies": {
+        "express": "^4.13.4",
+        "open": "0.0.5"
+    }
+}
