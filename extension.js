@@ -6,24 +6,33 @@ const wwwRoot = vscode.workspace.rootPath;
 // config.portNumber ||= 9527;
 
 function activate( context ) {
-    console.log( 'Congratulations, your extension "EaseServer" is now active!' );
+    console.log( '"EaseServer" is now active!' );
     
     var server = new EaseServer( config.portNumber ,wwwRoot );
 
-    server.start().then(() => {
-        console.log( 'start' );
-    }).catch( err => {
-        vscode.window.showInformationMessage( 'EaseServer fail:' + err );
-    });
+    
     context.subscriptions.push( server );
     
     
     
     var disposable;
-    disposable = vscode.commands.registerCommand( 'extension.easeServer', () => {        
-        openInBrowser();        
+    disposable = vscode.commands.registerCommand( 'easeserver.start', () => {    
+        server.start().then(() => {
+            // console.log( 'start' );
+            openInBrowser();
+        }).catch( err => {
+            vscode.window.showInformationMessage( 'EaseServer fail:' + err );
+        });    
+                
     });
     context.subscriptions.push( disposable );    
+
+    disposable = vscode.commands.registerCommand( 'easeserver.stop', () => {        
+        server.stop().then( ()=>{
+            vscode.window.showInformationMessage('EaseServer has been stopped');
+        });
+    });
+    context.subscriptions.push( disposable );   
 
     disposable = vscode.commands.registerCommand( 'easeserver.openInBrowser', () => {        
         openInBrowser();
@@ -42,11 +51,13 @@ function openInBrowser(){
     if ( !edit ) {
         return;
     }    
-    // console.log( edit.document.uri );
-    console.log( edit.document.fileName );
-    console.log( wwwRoot );
+    
+    // console.log( edit.document.fileName );
+    // console.log( wwwRoot );
 
     var fileName = edit.document.fileName.replace( wwwRoot , "");
+    // fileName = fileName.replace(/\/g, "/");
+    console.log( fileName );
     
-    open( `http://localhost:${config.portNumber}/` + fileName );
+    open( `http://localhost:${config.portNumber}` + fileName );
 }

@@ -1,14 +1,16 @@
 {
     "name": "easeserver",
     "displayName": "EaseServer",
-    "description": "EaseServer",
+    "description": "localhost current file",
     "version": "0.0.1",
     "publisher": "milkmidi",
     "engines": {
         "vscode": "^1.0.0"
     },
+    "icon":"img/icon.png",
+    "homepage": "https://github.com/milkmidi/vscode-easeserver/blob/master/README.md",
     "license": "MIT",
-    "galleryBanner.color": "#ff0000",
+    "galleryBanner.color": "#ecf0f1",
     "keywords": [
         "hosting",
         "web",
@@ -19,7 +21,8 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.easeServer"
+        "onCommand:easeserver.start",
+        "onCommand:easeserver.stop"
     ],
     "main": "./extension",
     "contributes": {
@@ -36,10 +39,20 @@
         },
         "commands": [
             {
-                "command": "extension.easeServer",
-                "title": "EaseServer"
+                "command": "easeserver.start",
+                "title": "EaseServer Start"
+            },
+            {
+                "command": "easeserver.stop",
+                "title": "EaseServer Stop"
             }
-        ]
+        ],
+        "keybindings": [
+			{
+				"command": "easeserver.start",
+				"key":"ctrl+shift+enter"
+			}
+		]
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install"

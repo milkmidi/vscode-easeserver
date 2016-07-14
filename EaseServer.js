@@ -12,18 +12,33 @@ const SERVER_RUNNING = 2;
 
 class EaseServer {
     constructor( portNumber = 9527 , wwwRoot = "" ) {
+        /**
+         * @type {number}
+         */
         this.state = SERVER_STOP;
         this._server = null;
+        /**
+         * @type {StatusBarItem}
+         */
         this._statusBarItem = window.createStatusBarItem( vscode.StatusBarAlignment.Right, 1 );
+        /**
+         * @type {number}
+         */        
         this.portNumber = portNumber;
+        /**
+         * @type {string}
+         */
         this.wwwRoot = wwwRoot;
     }
-    start() {
-        /*if ( this.state === SERVER_START ) {
-            return;
-        }
-        this.state = SERVER_OPENING;*/
+    start() {        
         return new Promise(( resolve, reject ) => {
+
+            if ( this.state === SERVER_START ) {
+                resolve();
+                return;
+            }
+            this.state = SERVER_RUNNING;
+
             var app = express();
             app.use( express.static( this.wwwRoot ) );
 
@@ -45,9 +60,10 @@ class EaseServer {
             if ( this._server === null ) {
                 reject( "Server not running" );
             } else {
-
                 this._server.close(() => {
                     this._server = null;
+                    this.state = SERVER_STOP;
+                    this._statusBarItem.hide();
                     resolve();
                 });
             }
