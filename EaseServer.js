@@ -10,17 +10,28 @@ const SERVER_STOP = 0;
 const SERVER_START = 1;
 const SERVER_RUNNING = 2;
 
+/** 
+ * @Class EaseServer. 
+ * */
 class EaseServer {
+    /**
+     * @param  {number} portNumber=9527
+     * @param  {string} wwwRoot=""
+     */
     constructor( portNumber = 9527 , wwwRoot = "" ) {
+        /**
+         * private
+         */        
+        this._server = null;
+        /**
+         * private
+         * @type {StatusBarItem}
+         */
+        this._statusBarItem = window.createStatusBarItem( vscode.StatusBarAlignment.Right, 1 );
         /**
          * @type {number}
          */
         this.state = SERVER_STOP;
-        this._server = null;
-        /**
-         * @type {StatusBarItem}
-         */
-        this._statusBarItem = window.createStatusBarItem( vscode.StatusBarAlignment.Right, 1 );
         /**
          * @type {number}
          */        
@@ -32,7 +43,6 @@ class EaseServer {
     }
     start() {        
         return new Promise(( resolve, reject ) => {
-
             if ( this.state === SERVER_START ) {
                 resolve();
                 return;
@@ -63,7 +73,9 @@ class EaseServer {
                 this._server.close(() => {
                     this._server = null;
                     this.state = SERVER_STOP;
-                    this._statusBarItem.hide();
+                    if( _statusBarItem !== null){
+                        this._statusBarItem.hide();
+                    }
                     resolve();
                 });
             }

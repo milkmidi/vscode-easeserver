@@ -1,14 +1,23 @@
 # localserver README
+This extenstion gives you run a file open in local server
 
-This is the README for your extension "localserver". After writing up a brief description, we recommend including the following sections.
+# Install
+Open up VS Code and hit `F1` type ext install then search for `EaseServer`
+
+![install and work](images/mdtools1.gif)
 
 ## Features
+* local http server
+* Auto opens file in browser
 
-local http server
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+# Usage
+## Available commands
+* **EaseServer Start** - Start the current file run as a website
+* default shortcut `Ctrl+Shift+Enter`
 
 **Enjoy!**
+
+# Changelog
+
+## Version 0.0.1
+* Initial release
