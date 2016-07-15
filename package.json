@@ -1,8 +1,8 @@
 {
     "name": "easeserver",
     "displayName": "EaseServer",
-    "description": "localhost current file",
-    "version": "0.0.1",
+    "description": "Hosts current file with web server",
+    "version": "0.0.12",
     "publisher": "milkmidi",
     "engines": {
         "vscode": "^1.0.0"
@@ -11,7 +11,7 @@
     "homepage": "https://github.com/milkmidi/vscode-easeserver/blob/master/README.md",
     "license": "MIT",    
     "galleryBanner": {
-        "color": "#ecf0f1"
+        "color": "#bdc3c7"
     },
     "keywords": [
         "hosting",

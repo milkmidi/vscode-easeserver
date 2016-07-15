@@ -10,7 +10,7 @@ Open up VS Code and hit `F1` type ext install then search for `EaseServer`
 * local http server
 * Auto opens file in browser
 
-![install and work](img/easeserver_1.gif)
+![install and work](https://raw.githubusercontent.com/milkmidi/vscode-easeserver/master/img/easeserver_1.gif)
 
 # Usage
 ## Available commands
