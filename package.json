@@ -9,8 +9,10 @@
     },
     "icon":"img/icon.png",
     "homepage": "https://github.com/milkmidi/vscode-easeserver/blob/master/README.md",
-    "license": "MIT",
-    "galleryBanner.color": "#ecf0f1",
+    "license": "MIT",    
+    "galleryBanner": {
+        "color": "#ecf0f1"
+    },
     "keywords": [
         "hosting",
         "web",
@@ -24,7 +26,7 @@
         "onCommand:easeserver.start",
         "onCommand:easeserver.stop"
     ],
-    "main": "./extension",
+    "main": "./src/extension",
     "contributes": {
         "configuration": {
             "type": "object",
