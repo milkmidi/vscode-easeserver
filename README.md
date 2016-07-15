@@ -1,4 +1,4 @@
-# localserver README
+# EaseServer README
 This extenstion gives you run a file open in local server
 
 # Install

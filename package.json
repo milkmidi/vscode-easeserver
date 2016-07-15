@@ -43,12 +43,11 @@
             {
                 "command": "easeserver.start",
                 "title": "EaseServer Start"
-            }
-            /*,
+            },
             {
                 "command": "easeserver.stop",
                 "title": "EaseServer Stop"
-            }*/
+            }
         ],
         "keybindings": [
 			{
