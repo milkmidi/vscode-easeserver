@@ -15,6 +15,7 @@ const SERVER_RUNNING = 2;
  * */
 class EaseServer {
     /**
+     * @constructor
      * @param  {number} portNumber=9527
      * @param  {string} wwwRoot=""
      */
@@ -41,6 +42,10 @@ class EaseServer {
          */
         this.wwwRoot = wwwRoot;
     }
+    
+    /**
+     * start express server
+     */
     start() {        
         return new Promise(( resolve, reject ) => {
             if ( this.state === SERVER_START ) {
@@ -65,6 +70,10 @@ class EaseServer {
             });
         });
     }
+
+    /**
+     * stop server
+     */
     stop() {
         return new Promise(( resolve, reject ) => {
             if ( this._server === null ) {

@@ -4,11 +4,13 @@ This extenstion gives you run a file open in local server
 # Install
 Open up VS Code and hit `F1` type ext install then search for `EaseServer`
 
-![install and work](images/mdtools1.gif)
+
 
 ## Features
 * local http server
 * Auto opens file in browser
+
+![install and work](img/easeserver_1.gif)
 
 # Usage
 ## Available commands
