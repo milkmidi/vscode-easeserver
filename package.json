@@ -42,7 +42,7 @@
         "commands": [
             {
                 "command": "easeserver.start",
-                "title": "EaseServer Start"
+                "title": "EaseServer Start"                
             },
             {
                 "command": "easeserver.stop",
