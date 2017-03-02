@@ -2,7 +2,7 @@
   "name": "easeserver",
   "displayName": "EaseServer",
   "description": "Hosts current file with web server",
-  "version": "0.0.12",
+  "version": "0.1.0",
   "publisher": "milkmidi",
   "engines": {
     "vscode": "^1.0.0"
