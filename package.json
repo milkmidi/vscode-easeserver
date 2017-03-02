@@ -2,7 +2,7 @@
   "name": "easeserver",
   "displayName": "EaseServer",
   "description": "Hosts current file with web server",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "milkmidi",
   "engines": {
     "vscode": "^1.0.0"
@@ -64,11 +64,11 @@
   "scripts": {
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
-  "devDependencies": {
-    "browser-sync": "^2.18.8",
+  "devDependencies": {    
     "vscode": "^0.11.0"
   },
   "dependencies": {
+    "browser-sync": "^2.18.8",
     "express": "^4.13.4",
     "open": "0.0.5"
   }
