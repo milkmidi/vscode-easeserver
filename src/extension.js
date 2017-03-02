@@ -13,7 +13,7 @@ const wwwRoot = vscode.workspace.rootPath;
 function activate( context ) {
     console.log( '"EaseServer" is now active!' );
 
-    var server = new EaseServer( config.portNumber, wwwRoot );
+    var server = new EaseServer( config.portNumber , config.uiportNumber, wwwRoot );
     context.subscriptions.push( server );
 
     var disposable;

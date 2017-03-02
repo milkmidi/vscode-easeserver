@@ -1,69 +1,75 @@
 {
-    "name": "easeserver",
-    "displayName": "EaseServer",
-    "description": "Hosts current file with web server",
-    "version": "0.0.12",
-    "publisher": "milkmidi",
-    "engines": {
-        "vscode": "^1.0.0"
-    },
-    "icon":"img/icon.png",
-    "homepage": "https://github.com/milkmidi/vscode-easeserver/blob/master/README.md",
-    "license": "MIT",    
-    "galleryBanner": {
-        "color": "#bdc3c7"
-    },
-    "keywords": [
-        "hosting",
-        "web",
-        "web server",
-        "local server"
-    ],
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "onCommand:easeserver.start",
-        "onCommand:easeserver.stop"
-    ],
-    "main": "./src/extension",
-    "contributes": {
-        "configuration": {
-            "type": "object",
-            "title": "EaseServer configuration",
-            "properties": {
-                "easeServer.portNumber": {
-                    "type": "number",
-                    "default": 9527,
-                    "description": "Specifies the port number the Express server should listen to"
-                }
-            }
+  "name": "easeserver",
+  "displayName": "EaseServer",
+  "description": "Hosts current file with web server",
+  "version": "0.0.12",
+  "publisher": "milkmidi",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "icon": "img/icon.png",
+  "homepage": "https://github.com/milkmidi/vscode-easeserver/blob/master/README.md",
+  "license": "MIT",
+  "galleryBanner": {
+    "color": "#bdc3c7"
+  },
+  "keywords": [
+    "hosting",
+    "web",
+    "web server",
+    "local server"
+  ],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:easeserver.start",
+    "onCommand:easeserver.stop"
+  ],
+  "main": "./src/extension",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "EaseServer configuration",
+      "properties": {
+        "easeServer.portNumber": {
+          "type": "number",
+          "default": 9527,
+          "description": "Specifies the port number the BrowserSync server should listen to"
         },
-        "commands": [
-            {
-                "command": "easeserver.start",
-                "title": "EaseServer Start"                
-            },
-            {
-                "command": "easeserver.stop",
-                "title": "EaseServer Stop"
-            }
-        ],
-        "keybindings": [
-			{
-				"command": "easeserver.start",
-				"key":"ctrl+shift+enter"
-			}
-		]
+        "easeServer.uiportNumber": {
+          "type": "number",
+          "default": 9528,
+          "description": "Specifies the port number the BrowserSync ui server should listen to"
+        }
+      }
     },
-    "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install"
-    },
-    "devDependencies": {
-        "vscode": "^0.11.0"
-    },
-    "dependencies": {
-        "express": "^4.13.4",
-        "open": "0.0.5"
-    }
+    "commands": [
+      {
+        "command": "easeserver.start",
+        "title": "EaseServer Start"
+      },
+      {
+        "command": "easeserver.stop",
+        "title": "EaseServer Stop"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "easeserver.start",
+        "key": "ctrl+shift+enter"
+      }
+    ]
+  },
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "vscode": "^0.11.0"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "open": "0.0.5"
+  }
 }
