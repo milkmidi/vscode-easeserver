@@ -21,6 +21,9 @@ Open up VS Code and hit `F1` type ext install then search for `EaseServer`
 
 # Changelog
 
+## Version 0.1.3
+* auto reload
+
 ## Version 0.1.1
 * use browser-sync
 ## Version 0.0.1

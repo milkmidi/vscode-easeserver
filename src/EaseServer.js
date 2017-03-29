@@ -1,12 +1,13 @@
 // 'use strict';
-const
-    express = require( 'express' ),
-    http = require( 'http' ),
-    vscode = require( 'vscode' ),
-    browserSync = require("browser-sync"),
-    window = vscode.window;
+const express = require( 'express' );
+const http = require( 'http' );
+const vscode = require( 'vscode' );
+const fs = require('fs');
+const watch = require('node-watch');
+const browserSync = require("browser-sync");
+const window = vscode.window;
 
-
+const WATCH_FILE_NAME =  /\.(html|htm|css|js)$/;
 const SERVER_STOP = 0;
 const SERVER_START = 1;
 const SERVER_RUNNING = 2;
@@ -25,12 +26,12 @@ class EaseServer {
         /**
          * private
          */        
-        this._server = null;
+        this.server = null;
         /**
          * private
          * @type {StatusBarItem}
          */
-        this._statusBarItem = window.createStatusBarItem( vscode.StatusBarAlignment.Right, 1 );
+        this.statusBarItem = window.createStatusBarItem( vscode.StatusBarAlignment.Right, 1 );
         /**
          * @type {number}
          */
@@ -44,12 +45,10 @@ class EaseServer {
          * @type {string}
          */
         this.wwwRoot = wwwRoot;
-
-
     }
     
     /**
-     * start express server
+     * start ease server
      */
     start() {        
         return new Promise(( resolve, reject ) => {
@@ -58,36 +57,29 @@ class EaseServer {
                 return;
             }
             this.state = SERVER_RUNNING;
-            this._server = browserSync.create();
-            this._server.init( {
+            this.server = browserSync.create();
+            this.server.init( {
+                files   :'**/*.html',
                 open    : false,
                 port    : this.portNumber,
-                server: this.wwwRoot,
+                server  : this.wwwRoot,
                 ui: {
                     port: this.uiportNumber
                 }
             } );
+            watch(this.wwwRoot, { recursive: true }, (evtType , filename)=>{
+                if (evtType === 'update' && WATCH_FILE_NAME.test(filename)) {
+                    this.server.reload();
+                }
+            })
             this.state = SERVER_START;
-            this._statusBarItem.command = "easeserver.openInBrowser";
-            this._statusBarItem.tooltip = "Click here to open in browser";
-            this._statusBarItem.text = `http://localhost:${this.portNumber}`;
-            this._statusBarItem.show();
+            this.statusBarItem.command = "easeserver.stop";
+            // this._statusBarItem.command = "easeserver.openInBrowser";
+            this.statusBarItem.tooltip = "Click here to stop easeServer";
+            this.statusBarItem.text = "Stop easeServer";
+            // this._statusBarItem.text = `http://localhost:${this.portNumber}`;
+            this.statusBarItem.show();
             resolve();
-
-            /*var app = express();
-            app.use( express.static( this.wwwRoot ) );
-
-            this._server = http.createServer( app ).listen( this.portNumber, () => {
-                this.state = SERVER_START;
-                this._statusBarItem.command = "easeserver.openInBrowser";
-                this._statusBarItem.tooltip = "Click here to open in browser";
-                this._statusBarItem.text = `http://localhost:${this.portNumber}`;
-                this._statusBarItem.show();
-                resolve();
-            }).on( 'error', err => {
-                this.state = SERVER_STOP;
-                reject( err );
-            });*/
         });
     }
 
@@ -96,32 +88,23 @@ class EaseServer {
      */
     stop() {
         return new Promise(( resolve, reject ) => {
-            if ( this._server === null ) {
+            if ( this.server === null ) {
                 reject( "Server not running" );
             } else {
-                this._server.exit();
-                this._server = null;
+                this.server.exit();
+                this.server = null;
                 this.state = SERVER_STOP;
-                if( this._statusBarItem !== null){
-                    this._statusBarItem.hide();
+                if( this.statusBarItem !== null){
+                    this.statusBarItem.hide();
                 }
                 resolve();
-
-               /* this._server.close(() => {
-                    this._server = null;
-                    this.state = SERVER_STOP;
-                    if( _statusBarItem !== null){
-                        this._statusBarItem.hide();
-                    }
-                    resolve();
-                });*/
             }
         });
     }
     dispose() {
-        this.stop();
-        this._statusBarItem.dispose();
-        this._statusBarItem = null;        
+        this.stop();        
+        this.statusBarItem.dispose();
+        this.statusBarItem = null;        
     }
 }
 
