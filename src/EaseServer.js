@@ -46,6 +46,7 @@ class EaseServer {
 
   /**
   * start ease server
+  * @return {Promise}
   */
   start() {
     return new Promise((resolve) => {
@@ -83,6 +84,7 @@ class EaseServer {
 
   /**
   * stop server
+  * @return {Promise}
   */
   stop() {
     return new Promise((resolve, reject) => {
