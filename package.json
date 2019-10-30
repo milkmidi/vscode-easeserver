@@ -71,6 +71,6 @@
     "browser-sync": "^2.18.8",
     "express": "^4.13.4",
     "node-watch": "^0.5.2",
-    "open": "0.0.5"
+    "open": "7.0.0"
   }
 }
